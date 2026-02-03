@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Валентинка для Ульяночки</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #ffe6f0;
+      text-align: center;
+      padding: 30px;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #e91e63;
+      margin-bottom: 30px;
+    }
+
+    .message {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    /* Вертикальная галерея с плавным скроллом */
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      max-height: 400px; /* высота блока */
+      overflow-y: auto;   /* вертикальная прокрутка */
+      padding-right: 10px;
+      margin-bottom: 30px;
+      scroll-behavior: smooth; /* плавная прокрутка */
+    }
+
+    .gallery-item {
+      width: 300px;
+      border-radius: 15px;
+      background: #fff;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05); /* лёгкое увеличение при наведении */
+    }
+
+    .gallery-item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .gallery-item p {
+      margin-top: 10px;
+      font-size: 0.95em;
+    }
+
+    .question {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      color: #c2185b;
+      transition: color 0.3s;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #e91e63;
+      color: #fff;
+      transition: background 0.3s, transform 0.3s;
+      position: relative;
+    }
+
+    button:hover {
+      background: #d81b60;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Строго для Ульяночки &lt;3</h1>
+
+  <div class="message">
+    Я был очень рад нашему знакомству...<br>
+    <!-- Здесь можешь писать свой текст -->
+  </div>
+
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=12fllDG-_xYATQCTXAwMpTCKRBcbfaURa" alt="Фото 1">
+      <p>наша первая встреча!</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=1Gu036MvcyNiqpPsQRutGpIlBzZnXT3Lk" alt="Фото 2">
+      <p>первая игра в бильярд с тобой</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=13yhnP5EydoFLW0z1qBPFmm9toq4tyFd-" alt="Фото 3">
+      <p>красивая фотка между зданиями</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=1rZnxhyi3LCuNfTuKUBGZ9NmnXpB26S6C" alt="Фото 4">
+      <p>вместе между зданиями</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=12wPwn01sEJgQBNF_06jFo5WQofNOnO6S" alt="Фото 5">
+      <p>Какая красивая улыбочка</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=1BkUqIKQNSSQSf_XBO6uFmo-9kkFN3acn" alt="Фото 6">
+      <p>я и правда люблю твою улыбочку</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=1PTDacK-FTW0tTBDvNccz_mOlMtUD7VUw" alt="Фото 7">
+      <p>новый год вместе!</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=1bpTmTiVxuB3uktSXTlHK93d_yhVnKp8U" alt="Фото 8">
+      <p>ещё больше улыбочек!</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=1aH7Cz8zcfi0_gIfXo0pxfGbfSGrOzz24" alt="Фото 9">
+      <p>Сайдзерия и правда вкусная была<3</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=1T5Wct8i2FwrVdVlrK42L8cFU29R-5WWp" alt="Фото 10">
+      <p>я всё ещё надеюсь что сердчеко в глазах было мне :></p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=1iuX6NyjdpJis4w4nwvtFoHLc6mO_zEs7" alt="Фото 11">
+      <p>объяснять не буду.</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=15sCidarfYBs_wlxQTbMm_xqfODSbq-MR" alt="Фото 12">
+      <p>соглашусь на что угодно ради твоей улыбки и хорошего настроения</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=16et28ZPhWAyvgjc6F7z4tNKVrNdWlM-C" alt="Фото 13">
+      <p>милашкrrrrr</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://drive.google.com/uc?export=view&id=1N9W-bm7TN_wkx2a0xf4VH6gDAfnoJURJ" alt="Фото 14">
+      <p>&lt;3</p>
+    </div>
+  </div>
+
+  <div class="question" id="question">Ты будешь моей валентинкой в этот прекрасный день?</div>
+
+  <div class="buttons">
+    <button id="yes">Да</button>
+    <button id="no">Нет</button>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    const question = document.getElementById('question');
+
+    yesBtn.addEventListener('click', () => {
+      alert('Я невероятно рад услышать это! Напиши мне "подарочек сюда" в чат со мной');
+    });
+
+    noBtn.addEventListener('click', () => {
+      question.textContent = 'Не думаю что ты можешь отказаться)';
+      moveButtonSmooth(noBtn);
+    });
+
+    function moveButtonSmooth(button) {
+      const screenWidth = window.innerWidth - button.offsetWidth - 20;
+      const screenHeight = window.innerHeight - button.offsetHeight - 20;
+
+      // Случайная позиция
+      const x = Math.random() * screenWidth;
+      const y = Math.random() * screenHeight;
+
+      // Добавляем плавный переход
+      button.style.transition = 'transform 0.5s ease-out';
+      button.style.transform = `translate(${x}px, ${y}px)`;
+    }
+  </script>
+
+</body>
+</html>
