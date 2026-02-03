@@ -52,12 +52,32 @@
     font-size: 1em;
   }
 
-  /* Кнопки */
-  .question {
+  /* Коробочка с предложением */
+  .gift-box {
+    width: 90%;
+    max-width: 400px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
     text-align: center;
-    margin: 30px 10px;
-    font-size: 1.3em;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .gift-box::before {
+    content: "🎀";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+  }
+
+  .question {
+    font-size: 1.2em;
     color: #ff0066;
+    margin-bottom: 20px;
   }
 
   .btn {
@@ -125,6 +145,7 @@
     .btn { font-size: 0.9em; padding: 8px 16px; }
     .photo-container img { max-width: 95%; }
     .question { font-size: 1.1em; }
+    .gift-box { padding: 15px; }
   }
 </style>
 </head>
@@ -153,31 +174,31 @@ showLine();
 <div class="gallery">
   <div class="photo-container">
     <img src="pictures/photo1.jpg" alt="Фото 1">
-    <p>Наша первая встреча! В тот момент я даже подумать не мог что всё сложится вот так </p>
+    <p>Наша первая встреча! В тот момент я даже подумать не мог что всё сложится вот так</p>
   </div>
   <div class="photo-container">
     <img src="pictures/photo2.jpg" alt="Фото 2">
-    <p>Первая игра в бильярд с тобойю. Оторвать от тебя глаз не мог блин </p>
+    <p>Первая игра в бильярд с тобой. Оторвать от тебя глаз не мог блин</p>
   </div>
   <div class="photo-container">
     <img src="pictures/photo3.jpg" alt="Фото 3">
-    <p>Твоя красивая фоточка после фильмов, милашечка) </p>
+    <p>Твоя красивая фоточка после фильмов, милашечка)</p>
   </div>
   <div class="photo-container">
     <img src="pictures/photo4.jpg" alt="Фото 4">
-    <p>Наша общая фоточка там же </p>
+    <p>Наша общая фоточка там же</p>
   </div>
   <div class="photo-container">
     <img src="pictures/photo5.jpg" alt="Фото 5">
-    <p>Какая у тебя красивая улыбочка всётаки</p>
+    <p>Какая у тебя красивая улыбочка всё-таки</p>
   </div>
   <div class="photo-container">
     <img src="pictures/photo6.jpg" alt="Фото 6">
-    <p>Я и правда люблю твою твою улыбку блинб</p>
+    <p>Я и правда люблю твою улыбку блин</p>
   </div>
   <div class="photo-container">
     <img src="pictures/photo7.jpg" alt="Фото 7">
-    <p>Новый год вместе! очень рад что провёл его с тобой &lt;3</p>
+    <p>Новый год вместе! Очень рад что провёл его с тобой &lt;3</p>
   </div>
   <div class="photo-container">
     <img src="pictures/photo8.jpg" alt="Фото 8">
@@ -209,8 +230,8 @@ showLine();
   </div>
 </div>
 
-<div class="question" id="questionText">Ты будешь моей валентинкой в этот прекрасный день?</div>
-<div style="text-align:center;">
+<div class="gift-box" id="giftBox">
+  <div class="question" id="questionText">Ты будешь моей валентинкой в этот прекрасный день?</div>
   <button class="btn" id="yesBtn">Да</button>
   <button class="btn" id="noBtn">Нет</button>
 </div>
@@ -221,12 +242,18 @@ showLine();
     alert('Я невероятно рад услышать это! Напиши мне "подарочек сюда" в чат со мной 💖');
   }
 
-  // Кнопка "Нет", убегающая
+  // Кнопка "Нет" убегает только внутри коробочки
   const noBtn = document.getElementById('noBtn');
   const questionText = document.getElementById('questionText');
+  const giftBox = document.getElementById('giftBox');
+
   noBtn.addEventListener('mouseenter', () => {
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    const boxRect = giftBox.getBoundingClientRect();
+    const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
+
+    const x = Math.random() * (boxRect.width - btnWidth);
+    const y = Math.random() * (boxRect.height - btnHeight - 40) + 40; // ниже текста
     noBtn.style.position = 'absolute';
     noBtn.style.left = x + 'px';
     noBtn.style.top = y + 'px';
@@ -244,11 +271,8 @@ showLine();
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 6000);
   }
-
   setInterval(createHeart, 300);
 </script>
 
 </body>
 </html>
-
-
