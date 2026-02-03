@@ -243,13 +243,12 @@ showLine();
   }
 
   // Кнопка "Нет" убегает только внутри коробочки
-  // Кнопка "Нет" убегает только внутри коробочки бесконечно
-noBtn.addEventListener('mousemove', () => {
+// Для телефонов и ПК
+function moveNoBtn() {
   const boxRect = giftBox.getBoundingClientRect();
   const btnWidth = noBtn.offsetWidth;
   const btnHeight = noBtn.offsetHeight;
 
-  // Случайная позиция внутри коробочки (ниже текста)
   const x = Math.random() * (boxRect.width - btnWidth);
   const y = Math.random() * (boxRect.height - btnHeight - 40) + 40;
 
@@ -258,6 +257,13 @@ noBtn.addEventListener('mousemove', () => {
   noBtn.style.top = y + 'px';
 
   questionText.textContent = "Не думаю что ты можешь отказаться)";
+}
+
+// ПК
+noBtn.addEventListener('mouseover', moveNoBtn);
+
+// Телефон
+noBtn.addEventListener('touchstart', moveNoBtn);
 });
 
   // Сердечки
@@ -276,4 +282,5 @@ noBtn.addEventListener('mousemove', () => {
 
 </body>
 </html>
+
 
