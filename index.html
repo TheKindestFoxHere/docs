@@ -243,22 +243,22 @@ showLine();
   }
 
   // Кнопка "Нет" убегает только внутри коробочки
-  const noBtn = document.getElementById('noBtn');
-  const questionText = document.getElementById('questionText');
-  const giftBox = document.getElementById('giftBox');
+  // Кнопка "Нет" убегает только внутри коробочки бесконечно
+noBtn.addEventListener('mousemove', () => {
+  const boxRect = giftBox.getBoundingClientRect();
+  const btnWidth = noBtn.offsetWidth;
+  const btnHeight = noBtn.offsetHeight;
 
-  noBtn.addEventListener('mouseenter', () => {
-    const boxRect = giftBox.getBoundingClientRect();
-    const btnWidth = noBtn.offsetWidth;
-    const btnHeight = noBtn.offsetHeight;
+  // Случайная позиция внутри коробочки (ниже текста)
+  const x = Math.random() * (boxRect.width - btnWidth);
+  const y = Math.random() * (boxRect.height - btnHeight - 40) + 40;
 
-    const x = Math.random() * (boxRect.width - btnWidth);
-    const y = Math.random() * (boxRect.height - btnHeight - 40) + 40; // ниже текста
-    noBtn.style.position = 'absolute';
-    noBtn.style.left = x + 'px';
-    noBtn.style.top = y + 'px';
-    questionText.textContent = "Не думаю что ты можешь отказаться)";
-  });
+  noBtn.style.position = 'absolute';
+  noBtn.style.left = x + 'px';
+  noBtn.style.top = y + 'px';
+
+  questionText.textContent = "Не думаю что ты можешь отказаться)";
+});
 
   // Сердечки
   function createHeart() {
@@ -276,3 +276,4 @@ showLine();
 
 </body>
 </html>
+
