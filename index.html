@@ -278,15 +278,20 @@ noBtn.addEventListener('touchstart', moveNoBtn);
 function createFalling() {
   const elem = document.createElement('div');
   const r = Math.random();
-  if (r < 0.5) elem.className = 'heart falling';
-  else if (r < 0.75) elem.className = 'star falling';
-  else elem.className = 'flower falling';
+  if (r < 0.5) {
+    elem.textContent = "❤️";  // сердечко через emoji
+    elem.style.fontSize = 15 + Math.random()*20 + "px";
+  } else if (r < 0.75) {
+    elem.textContent = "⭐";  // звёздочка emoji
+    elem.style.fontSize = 15 + Math.random()*20 + "px";
+  } else {
+    elem.textContent = "🌹";  // розочка emoji
+    elem.style.fontSize = 15 + Math.random()*20 + "px";
+  }
 
+  elem.className = 'falling';
   elem.style.left = Math.random() * window.innerWidth + 'px';
-  const size = 15 + Math.random() * 20;
-  elem.style.width = size + 'px';
-  elem.style.height = size + 'px';
-  elem.style.animationDuration = 3 + Math.random() * 3 + 's';
+  elem.style.animationDuration = 3 + Math.random()*3 + 's';
   document.body.appendChild(elem);
   setTimeout(() => elem.remove(), 6000);
 }
@@ -295,3 +300,4 @@ setInterval(createFalling, 300);
 
 </body>
 </html>
+
