@@ -1,160 +1,236 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Валентинка для Ульяночки</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #ffe6f0;
-      text-align: center;
-      padding: 30px;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Валентинка для Ульяночки 💖</title>
+<style>
+  /* Общие стили */
+  body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #ffe6f0;
+    color: #333;
+    overflow-x: hidden;
+    position: relative;
+  }
 
-    h1 {
-      font-size: 2.5em;
-      color: #e91e63;
-      margin-bottom: 25px;
-    }
+  h1 {
+    text-align: center;
+    margin: 30px 10px 10px;
+    font-size: 2em;
+    color: #ff0066;
+  }
 
-    .message {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
+  .text {
+    text-align: center;
+    margin: 10px 20px 30px;
+    font-size: 1.2em;
+  }
 
-    /* Вертикальная галерея */
-    .gallery {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-      max-height: 450px;
-      overflow-y: auto;
-      margin-bottom: 35px;
-      scroll-behavior: smooth;
-    }
+  /* Галерея */
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 40px;
+  }
 
-    .gallery-item {
-      width: 320px;
-      background: white;
-      border-radius: 16px;
-      padding: 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease;
-    }
+  .photo-container {
+    text-align: center;
+  }
 
-    .gallery-item:hover {
-      transform: scale(1.04);
-    }
+  .photo-container img {
+    max-width: 90%;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
 
-    .gallery-item img {
-      width: 100%;
-      border-radius: 12px;
-    }
+  .photo-container p {
+    margin-top: 5px;
+    font-size: 1em;
+  }
 
-    .gallery-item p {
-      margin-top: 10px;
-      font-size: 0.95em;
-    }
+  /* Кнопки */
+  .question {
+    text-align: center;
+    margin: 30px 10px;
+    font-size: 1.3em;
+    color: #ff0066;
+  }
 
-    .question {
-      font-size: 1.5em;
-      margin-bottom: 20px;
-      color: #c2185b;
-    }
+  .btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #ff3399;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+  }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 50px;
-      position: relative;
-      height: 60px;
-    }
+  .btn:hover {
+    transform: scale(1.1);
+  }
 
-    button {
-      padding: 12px 24px;
-      font-size: 1em;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      background: #e91e63;
-      color: white;
-      transition: background 0.3s, transform 0.5s ease;
-      position: absolute;
-    }
+  /* Сердечки */
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #ff69b4, #ff0066);
+    transform: rotate(45deg);
+    top: -50px;
+    z-index: 9999;
+    pointer-events: none;
+    border-radius: 5px;
+    box-shadow: 0 0 8px #fff, 0 0 12px #ff99cc;
+    animation-name: fall;
+    animation-timing-function: linear;
+  }
 
-    #yes {
-      position: relative;
-    }
+  .heart:before,
+  .heart:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #ff69b4, #ff0066);
+    border-radius: 50%;
+  }
 
-    button:hover {
-      background: #d81b60;
-    }
-  </style>
+  .heart:before {
+    top: -10px;
+    left: 0;
+  }
+
+  .heart:after {
+    left: -10px;
+    top: 0;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg) scale(0.8); opacity: 0; }
+  }
+
+  /* Адаптивность */
+  @media (max-width: 600px) {
+    h1 { font-size: 1.5em; }
+    .text { font-size: 1em; }
+    .btn { font-size: 0.9em; padding: 8px 16px; }
+    .photo-container img { max-width: 95%; }
+    .question { font-size: 1.1em; }
+  }
+</style>
 </head>
 <body>
 
 <h1>Строго для Ульяночки &lt;3</h1>
 
-<div class="message">
-  Я был очень рад нашему знакомству…<br>
-  <p>Тест автодеплоя 💖</p>
-  <!-- можешь дописать здесь -->
-</div>
+<div class="text">Я был очень рад нашему знакомству…</div>
 
 <div class="gallery">
-  <div class="gallery-item"><img src="pictures/photo1.jpg"><p>наша первая встреча!</p></div>
-  <div class="gallery-item"><img src="pictures/photo2.jpg"><p>первая игра в бильярд с тобой</p></div>
-  <div class="gallery-item"><img src="pictures/photo3.jpg"><p>красивая фотка между зданиями</p></div>
-  <div class="gallery-item"><img src="pictures/photo4.jpg"><p>вместе между зданиями</p></div>
-  <div class="gallery-item"><img src="pictures/photo5.jpg"><p>Какая красивая улыбочка</p></div>
-  <div class="gallery-item"><img src="pictures/photo6.jpg"><p>я и правда люблю твою улыбочку</p></div>
-  <div class="gallery-item"><img src="pictures/photo7.jpg"><p>новый год вместе!</p></div>
-  <div class="gallery-item"><img src="pictures/photo8.jpg"><p>ещё больше улыбочек!</p></div>
-  <div class="gallery-item"><img src="pictures/photo9.jpg"><p>Сайдзерия и правда вкусная была &lt;3</p></div>
-  <div class="gallery-item"><img src="pictures/photo10.jpg"><p>я всё ещё надеюсь что сердечко в глазах было мне :&gt;</p></div>
-  <div class="gallery-item"><img src="pictures/photo11.jpg"><p>объяснять не буду.</p></div>
-  <div class="gallery-item"><img src="pictures/photo12.jpg"><p>соглашусь на что угодно ради твоей улыбки</p></div>
-  <div class="gallery-item"><img src="pictures/photo13.jpg"><p>милашкrrrrr</p></div>
-  <div class="gallery-item"><img src="pictures/photo14.jpg"><p>&lt;3</p></div>
+  <div class="photo-container">
+    <img src="pictures/photo1.jpg" alt="Фото 1">
+    <p>Наша первая встреча!</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo2.jpg" alt="Фото 2">
+    <p>Первая игра в бильярд с тобой</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo3.jpg" alt="Фото 3">
+    <p>Красивая фотка между зданиями</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo4.jpg" alt="Фото 4">
+    <p>Вместе между зданиями</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo5.jpg" alt="Фото 5">
+    <p>Какая красивая улыбочка</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo6.jpg" alt="Фото 6">
+    <p>Я и правда люблю твою улыбочку</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo7.jpg" alt="Фото 7">
+    <p>Новый год вместе!</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo8.jpg" alt="Фото 8">
+    <p>Ещё больше улыбочек!</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo9.jpg" alt="Фото 9">
+    <p>Сайдзерия и правда вкусная была &lt;3</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo10.jpg" alt="Фото 10">
+    <p>Я всё ещё надеюсь, что сердечко в глазах было мне :&gt;</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo11.jpg" alt="Фото 11">
+    <p>Объяснять не буду.</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo12.jpg" alt="Фото 12">
+    <p>Соглашусь на что угодно ради твоей улыбки и хорошего настроения</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo13.jpg" alt="Фото 13">
+    <p>Милашкrrrrr</p>
+  </div>
+  <div class="photo-container">
+    <img src="pictures/photo14.jpg" alt="Фото 14">
+    <p>&lt;3</p>
+  </div>
 </div>
 
-<div class="question" id="question">
-  Ты будешь моей валентинкой в этот прекрасный день?
-</div>
-
-<div class="buttons">
-  <button id="yes">Да</button>
-  <button id="no">Нет</button>
+<div class="question" id="questionText">Ты будешь моей валентинкой в этот прекрасный день?</div>
+<div style="text-align:center;">
+  <button class="btn" id="yesBtn">Да</button>
+  <button class="btn" id="noBtn">Нет</button>
 </div>
 
 <script>
-  const yesBtn = document.getElementById("yes");
-  const noBtn = document.getElementById("no");
-  const question = document.getElementById("question");
-
-  yesBtn.addEventListener("click", () => {
-    alert('Я невероятно рад услышать это! 💖\nНапиши мне "подарочек сюда" в чат со мной');
-  });
-
-  noBtn.addEventListener("click", () => {
-    question.textContent = "Не думаю что ты можешь отказаться)";
-    moveButton(noBtn);
-  });
-
-  function moveButton(btn) {
-    const maxX = window.innerWidth - btn.offsetWidth - 20;
-    const maxY = window.innerHeight - btn.offsetHeight - 20;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    btn.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random()*20-10}deg)`;
+  // Кнопка "Да"
+  document.getElementById('yesBtn').onclick = function() {
+    alert('Я невероятно рад услышать это! Напиши мне "подарочек сюда" в чат со мной 💖');
   }
+
+  // Кнопка "Нет", убегающая
+  const noBtn = document.getElementById('noBtn');
+  const questionText = document.getElementById('questionText');
+  noBtn.addEventListener('mouseenter', () => {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+    questionText.textContent = "Не думаю что ты можешь отказаться)";
+  });
+
+  // Сердечки
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.width = 15 + Math.random() * 20 + 'px';
+    heart.style.height = heart.style.width;
+    heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+
+  setInterval(createHeart, 300);
 </script>
 
 </body>
 </html>
-
