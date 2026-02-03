@@ -8,7 +8,7 @@
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
-  background: #f3e6ff; /* Фиолетовый фон */
+  background: #f3e6ff; /* нежный фиолетовый фон */
   color: #333;
   overflow-x: hidden;
   position: relative;
@@ -18,7 +18,7 @@ h1 {
   text-align: center;
   margin: 30px 10px 10px;
   font-size: 2em;
-  color: #8a2be2; /* Фиолетовый заголовок */
+  color: #8a2be2;
 }
 
 .text {
@@ -58,6 +58,12 @@ h1 {
   font-size: 1.5em;
   color: #8a2be2;
   line-height: 1.6em;
+}
+
+/* Кнопка музыки */
+#musicBtn {
+  display: inline-block;
+  margin: 20px auto;
 }
 
 /* Коробочка с бантиком */
@@ -105,22 +111,27 @@ h1 {
   transform: scale(1.1);
 }
 
-/* Сердечки */
-.heart {
+/* Элементы падения */
+.falling {
   position: absolute;
   width: 20px;
   height: 20px;
-  background: linear-gradient(45deg, #ff69b4, #ff0066);
-  transform: rotate(45deg);
   top: -50px;
   z-index: 9999;
   pointer-events: none;
-  border-radius: 5px;
-  box-shadow: 0 0 8px #fff, 0 0 12px #ff99cc;
   animation-name: fall;
   animation-timing-function: linear;
 }
-.heart:before, .heart:after {
+
+.heart {
+  background: linear-gradient(45deg, #ff69b4, #ff0066);
+  transform: rotate(45deg);
+  border-radius: 5px;
+  box-shadow: 0 0 8px #fff, 0 0 12px #ff99cc;
+}
+
+.heart:before,
+.heart:after {
   content: "";
   position: absolute;
   width: 20px;
@@ -131,18 +142,18 @@ h1 {
 .heart:before { top: -10px; left: 0; }
 .heart:after { left: -10px; top: 0; }
 
-/* Розочки */
 .flower {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: pink;
+  background: red;
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  top: -50px;
-  z-index: 9999;
-  pointer-events: none;
-  animation-name: fall;
-  animation-timing-function: linear;
+}
+
+.star {
+  background: gold;
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%,
+    79% 91%, 50% 70%, 21% 91%, 32% 57%,
+    2% 35%, 39% 35%
+  );
 }
 
 @keyframes fall {
@@ -183,6 +194,14 @@ function showLine() {
 showLine();
 </script>
 
+<!-- Кнопка музыки перед галереей -->
+<div style="text-align:center;">
+  <button id="musicBtn" class="btn">Включить музыку 🎵</button>
+</div>
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <div class="gallery">
   <div class="photo-container"><img src="pictures/photo1.jpg" alt=""><p>Наша первая встреча!</p></div>
   <div class="photo-container"><img src="pictures/photo2.jpg" alt=""><p>Первая игра в бильярд с тобой</p></div>
@@ -202,7 +221,7 @@ showLine();
 
 <div class="extra-text">
   <p>Каждый день с тобой делает мой мир ярче и теплее.</p>
-  <p>Твоя улыбки и смех — моя любимая музыка.</p>
+  <p>Твои улыбки и смех — моя любимая музыка.</p>
   <p>Я счастлив, что могу хранить все наши моменты в сердце ❤️</p>
 </div>
 
@@ -212,21 +231,31 @@ showLine();
   <button class="btn" id="noBtn">Нет</button>
 </div>
 
-<audio autoplay loop>
-  <source src="music.mp3" type="audio/mpeg">
-  Ваш браузер не поддерживает аудио.
-</audio>
-
 <script>
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const questionText = document.getElementById('questionText');
 const giftBox = document.getElementById('giftBox');
 
+// Музыка
+const music = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+musicBtn.addEventListener('click', () => {
+  if (music.paused) {
+    music.play();
+    musicBtn.textContent = "Выключить музыку 🔇";
+  } else {
+    music.pause();
+    musicBtn.textContent = "Включить музыку 🎵";
+  }
+});
+
+// Кнопка "Да"
 yesBtn.onclick = function() {
   alert('Я невероятно рад услышать это! Напиши мне "подарочек сюда" в чат со мной 💖');
 }
 
+// Кнопка "Нет" убегающая
 function moveNoBtn() {
   const boxRect = giftBox.getBoundingClientRect();
   const btnWidth = noBtn.offsetWidth;
@@ -242,22 +271,27 @@ function moveNoBtn() {
   questionText.textContent = "Не думаю что ты можешь отказаться)";
 }
 
-noBtn.addEventListener('mouseover', moveNoBtn);
+noBtn.addEventListener('mouseenter', moveNoBtn);
 noBtn.addEventListener('touchstart', moveNoBtn);
 
-function createHeartOrFlower() {
+// Падающие элементы: сердечки, розы, звёзды
+function createFalling() {
   const elem = document.createElement('div');
-  elem.className = (Math.random() < 0.5) ? 'heart' : 'flower';
+  const r = Math.random();
+  if (r < 0.5) elem.className = 'heart falling';
+  else if (r < 0.75) elem.className = 'star falling';
+  else elem.className = 'flower falling';
+
   elem.style.left = Math.random() * window.innerWidth + 'px';
-  elem.style.width = 15 + Math.random() * 20 + 'px';
-  elem.style.height = elem.style.width;
+  const size = 15 + Math.random() * 20;
+  elem.style.width = size + 'px';
+  elem.style.height = size + 'px';
   elem.style.animationDuration = 3 + Math.random() * 3 + 's';
   document.body.appendChild(elem);
   setTimeout(() => elem.remove(), 6000);
 }
-setInterval(createHeartOrFlower, 300);
+setInterval(createFalling, 300);
 </script>
 
 </body>
 </html>
-
