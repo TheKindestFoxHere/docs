@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Валентинка для прекрасной Ульяночки 💖</title>
 <style>
-  /* Общие стили */
   body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
@@ -28,7 +27,6 @@
     font-size: 1.2em;
   }
 
-  /* Галерея */
   .gallery {
     display: flex;
     flex-direction: column;
@@ -52,7 +50,7 @@
     font-size: 1em;
   }
 
-  /* Коробочка с предложением */
+  /* Коробочка с бантиком */
   .gift-box {
     width: 90%;
     max-width: 400px;
@@ -97,7 +95,6 @@
     transform: scale(1.1);
   }
 
-  /* Сердечки */
   .heart {
     position: absolute;
     width: 20px;
@@ -123,22 +120,14 @@
     border-radius: 50%;
   }
 
-  .heart:before {
-    top: -10px;
-    left: 0;
-  }
-
-  .heart:after {
-    left: -10px;
-    top: 0;
-  }
+  .heart:before { top: -10px; left: 0; }
+  .heart:after { left: -10px; top: 0; }
 
   @keyframes fall {
     0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
     100% { transform: translateY(100vh) rotate(360deg) scale(0.8); opacity: 0; }
   }
 
-  /* Адаптивность */
   @media (max-width: 600px) {
     h1 { font-size: 1.5em; }
     .text { font-size: 1em; }
@@ -172,62 +161,20 @@ showLine();
 </script>
 
 <div class="gallery">
-  <div class="photo-container">
-    <img src="pictures/photo1.jpg" alt="Фото 1">
-    <p>Наша первая встреча! В тот момент я даже подумать не мог что всё сложится вот так</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo2.jpg" alt="Фото 2">
-    <p>Первая игра в бильярд с тобой. Оторвать от тебя глаз не мог блин</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo3.jpg" alt="Фото 3">
-    <p>Твоя красивая фоточка после фильмов, милашечка)</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo4.jpg" alt="Фото 4">
-    <p>Наша общая фоточка там же</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo5.jpg" alt="Фото 5">
-    <p>Какая у тебя красивая улыбочка всё-таки</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo6.jpg" alt="Фото 6">
-    <p>Я и правда люблю твою улыбку блин</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo7.jpg" alt="Фото 7">
-    <p>Новый год вместе! Очень рад что провёл его с тобой &lt;3</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo8.jpg" alt="Фото 8">
-    <p>Ещё больше улыбочек!!!!!!</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo9.jpg" alt="Фото 9">
-    <p>Сайдзерия и правда вкусная была &lt;3</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo10.jpg" alt="Фото 10">
-    <p>Я всё ещё надеюсь, что сердечко в глазах было мне :&gt;</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo11.jpg" alt="Фото 11">
-    <p>Объяснять не буду.</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo12.jpg" alt="Фото 12">
-    <p>Соглашусь на что угодно ради твоей улыбки и хорошего настроения</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo13.jpg" alt="Фото 13">
-    <p>Милашкrrrrr</p>
-  </div>
-  <div class="photo-container">
-    <img src="pictures/photo14.jpg" alt="Фото 14">
-    <p>&lt;3</p>
-  </div>
+  <div class="photo-container"><img src="pictures/photo1.jpg" alt="Фото 1"><p>Наша первая встреча! В тот момент я даже подумать не мог что всё сложится вот так</p></div>
+  <div class="photo-container"><img src="pictures/photo2.jpg" alt="Фото 2"><p>Первая игра в бильярд с тобой. Оторвать от тебя глаз не мог блин</p></div>
+  <div class="photo-container"><img src="pictures/photo3.jpg" alt="Фото 3"><p>Твоя красивая фоточка после фильмов, милашечка)</p></div>
+  <div class="photo-container"><img src="pictures/photo4.jpg" alt="Фото 4"><p>Наша общая фоточка там же</p></div>
+  <div class="photo-container"><img src="pictures/photo5.jpg" alt="Фото 5"><p>Какая у тебя красивая улыбочка всё-таки</p></div>
+  <div class="photo-container"><img src="pictures/photo6.jpg" alt="Фото 6"><p>Я и правда люблю твою улыбку блин</p></div>
+  <div class="photo-container"><img src="pictures/photo7.jpg" alt="Фото 7"><p>Новый год вместе! Очень рад что провёл его с тобой &lt;3</p></div>
+  <div class="photo-container"><img src="pictures/photo8.jpg" alt="Фото 8"><p>Ещё больше улыбочек!!!!!!</p></div>
+  <div class="photo-container"><img src="pictures/photo9.jpg" alt="Фото 9"><p>Сайдзерия и правда вкусная была &lt;3</p></div>
+  <div class="photo-container"><img src="pictures/photo10.jpg" alt="Фото 10"><p>Я всё ещё надеюсь, что сердечко в глазах было мне :&gt;</p></div>
+  <div class="photo-container"><img src="pictures/photo11.jpg" alt="Фото 11"><p>Объяснять не буду.</p></div>
+  <div class="photo-container"><img src="pictures/photo12.jpg" alt="Фото 12"><p>Соглашусь на что угодно ради твоей улыбки и хорошего настроения</p></div>
+  <div class="photo-container"><img src="pictures/photo13.jpg" alt="Фото 13"><p>Милашкrrrrr</p></div>
+  <div class="photo-container"><img src="pictures/photo14.jpg" alt="Фото 14"><p>&lt;3</p></div>
 </div>
 
 <div class="gift-box" id="giftBox">
@@ -237,34 +184,33 @@ showLine();
 </div>
 
 <script>
-  // Кнопка "Да"
-  document.getElementById('yesBtn').onclick = function() {
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const questionText = document.getElementById('questionText');
+  const giftBox = document.getElementById('giftBox');
+
+  yesBtn.onclick = function() {
     alert('Я невероятно рад услышать это! Напиши мне "подарочек сюда" в чат со мной 💖');
   }
 
-  // Кнопка "Нет" убегает только внутри коробочки
-// Для телефонов и ПК
-function moveNoBtn() {
-  const boxRect = giftBox.getBoundingClientRect();
-  const btnWidth = noBtn.offsetWidth;
-  const btnHeight = noBtn.offsetHeight;
+  function moveNoBtn() {
+    const boxRect = giftBox.getBoundingClientRect();
+    const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
 
-  const x = Math.random() * (boxRect.width - btnWidth);
-  const y = Math.random() * (boxRect.height - btnHeight - 40) + 40;
+    const x = Math.random() * (boxRect.width - btnWidth);
+    const y = Math.random() * (boxRect.height - btnHeight - 40) + 40;
 
-  noBtn.style.position = 'absolute';
-  noBtn.style.left = x + 'px';
-  noBtn.style.top = y + 'px';
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
 
-  questionText.textContent = "Не думаю что ты можешь отказаться)";
-}
+    questionText.textContent = "Не думаю что ты можешь отказаться)";
+  }
 
-// ПК
-noBtn.addEventListener('mouseover', moveNoBtn);
-
-// Телефон
-noBtn.addEventListener('touchstart', moveNoBtn);
-});
+  // ПК и сенсорные устройства
+  noBtn.addEventListener('mouseover', moveNoBtn);
+  noBtn.addEventListener('touchstart', moveNoBtn);
 
   // Сердечки
   function createHeart() {
@@ -282,5 +228,3 @@ noBtn.addEventListener('touchstart', moveNoBtn);
 
 </body>
 </html>
-
-
