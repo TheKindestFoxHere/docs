@@ -132,7 +132,23 @@
 
 <h1>Строго для Ульяночки &lt;3</h1>
 
-<div class="text">Я был очень рад нашему знакомству…</div>
+<div class="text" id="mainText"></div>
+
+<script>
+const lines = [
+  "Я так рад, что мы встретились.",
+  "Каждое мгновение с тобой делает мой день ярче и теплее.",
+];
+let i = 0;
+function showLine() {
+  if (i < lines.length) {
+    document.getElementById('mainText').innerHTML += lines[i] + "<br>";
+    i++;
+    setTimeout(showLine, 2000);
+  }
+}
+showLine();
+</script>
 
 <div class="gallery">
   <div class="photo-container">
@@ -234,4 +250,5 @@
 
 </body>
 </html>
+
 
