@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Валентинка для прекрасной Ульяночки 💖</title>
+<title>Валентинка для прекрасной Ульяночки 💜</title>
 <style>
   body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    background: #ffe6f0;
+    background: #f3e6ff; /* Нежный фиолетовый фон */
     color: #333;
     overflow-x: hidden;
     position: relative;
@@ -18,7 +18,7 @@
     text-align: center;
     margin: 30px 10px 10px;
     font-size: 2em;
-    color: #ff0066;
+    color: #8a2be2; /* Фиолетовый */
   }
 
   .text {
@@ -51,13 +51,13 @@
     font-size: 1em;
   }
 
-  /* Дополнительный текст */
+  /* Дополнительный милый текст */
   .extra-text {
     text-align: center;
     margin: 20px 15px;
-    font-size: 1.1em;
-    color: #ff0066;
-    line-height: 1.5em;
+    font-size: 1.5em; /* большой текст */
+    color: #8a2be2;   /* фиолетовый */
+    line-height: 1.6em;
   }
 
   /* Коробочка с бантиком */
@@ -84,7 +84,7 @@
 
   .question {
     font-size: 1.2em;
-    color: #ff0066;
+    color: #8a2be2;
     margin-bottom: 20px;
   }
 
@@ -95,7 +95,7 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    background: #ff3399;
+    background: #8a2be2;
     color: white;
     transition: all 0.3s ease;
     position: relative;
@@ -134,6 +134,20 @@
   .heart:before { top: -10px; left: 0; }
   .heart:after { left: -10px; top: 0; }
 
+  /* Розочки */
+  .flower {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: pink;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    top: -50px;
+    z-index: 9999;
+    pointer-events: none;
+    animation-name: fall;
+    animation-timing-function: linear;
+  }
+
   @keyframes fall {
     0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
     100% { transform: translateY(100vh) rotate(360deg) scale(0.8); opacity: 0; }
@@ -146,6 +160,7 @@
     .photo-container img { max-width: 95%; }
     .question { font-size: 1.1em; }
     .gift-box { padding: 15px; }
+    .extra-text { font-size: 1.3em; }
   }
 </style>
 </head>
@@ -188,11 +203,11 @@ showLine();
   <div class="photo-container"><img src="pictures/photo14.jpg" alt="Фото 14"><p>&lt;3</p></div>
 </div>
 
-<!-- Extra текст после всех фоток -->
+<!-- Extra милый текст -->
 <div class="extra-text">
-  <p>Первый абзац текста после всех фотографий.</p>
-  <p>Второй абзац: можно написать что-то тёплое и личное ❤️</p>
-  <p>Третий абзац: например, "Каждая наша фотография — маленькое воспоминание, которое я храню в сердце".</p>
+  <p>Каждый день с тобой делает мой мир ярче и теплее.</p>
+  <p>Твои улыбки и смех — моя любимая музыка.</p>
+  <p>Я счастлив, что могу хранить все наши моменты в сердце ❤️</p>
 </div>
 
 <div class="gift-box" id="giftBox">
@@ -200,6 +215,12 @@ showLine();
   <button class="btn" id="yesBtn">Да</button>
   <button class="btn" id="noBtn">Нет</button>
 </div>
+
+<!-- Музыка -->
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+  Ваш браузер не поддерживает аудио.
+</audio>
 
 <script>
   const yesBtn = document.getElementById('yesBtn');
@@ -230,18 +251,22 @@ showLine();
   noBtn.addEventListener('mouseover', moveNoBtn);
   noBtn.addEventListener('touchstart', moveNoBtn);
 
-  // Сердечки
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.width = 15 + Math.random() * 20 + 'px';
-    heart.style.height = heart.style.width;
-    heart.style.animationDuration = 3 + Math.random() * 3 + 's';
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
+  // Сердечки и розочки
+  function createHeartOrFlower() {
+    const elem = document.createElement('div');
+    if (Math.random() < 0.5) {
+      elem.className = 'heart';
+    } else {
+      elem.className = 'flower';
+    }
+    elem.style.left = Math.random() * window.innerWidth + 'px';
+    elem.style.width = 15 + Math.random() * 20 + 'px';
+    elem.style.height = elem.style.width;
+    elem.style.animationDuration = 3 + Math.random() * 3 + 's';
+    document.body.appendChild(elem);
+    setTimeout(() => elem.remove(), 6000);
   }
-  setInterval(createHeart, 300);
+  setInterval(createHeartOrFlower, 300);
 </script>
 
 </body>
