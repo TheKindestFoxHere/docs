@@ -183,6 +183,7 @@ const lines = [
   "Я невероятно сильно рад что мы с тобой встретились💜",
   "И что наш вкус в музыке совпал и это стало стартом нашей странной и интересной истории.",
   "С того дня прошло не так много времени, но фоточек накопилось нормально)",
+  "Рекомендую подождать минутку и дать фоткам прогрузиться <3",
 ];
 let i = 0;
 function showLine() {
@@ -197,7 +198,7 @@ showLine();
 
 <!-- Кнопка музыки перед галереей -->
 <div style="text-align:center;">
-  <button id="musicBtn" class="btn">Включить музыку 🎵</button>
+  <button id="musicBtn" class="btn">Включить музыку (чуть чуть подожди после тыка)🎵</button>
 </div>
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
@@ -212,7 +213,7 @@ showLine();
   <div class="photo-container"><img src="pictures/photo15.jpg" alt=""><p>👉👈</p></div>
   <div class="photo-container"><img src="pictures/photo6.jpg" alt=""><p>Когда ты улыбаешься, у меня голова кругом...</p></div>
   <div class="photo-container"><img src="pictures/photo7.jpg" alt=""><p>Новый год вместе!</p></div>
-  <div class="photo-container"><img src="pictures/photo16.jpg" alt=""><p>💜</p></div>
+  <div class="photo-container"><img src="pictures/photo16.jpg" alt=""><p>?</p></div>
   <div class="photo-container"><img src="pictures/photo18.jpg" alt=""><p>Хоть и не наелся, но было вайбово, согласна?</p></div>
   <div class="photo-container"><img src="pictures/photo17.jpg" alt=""><p>"неее, 17 для понтов" говорила она</p></div>
   <div class="photo-container"><img src="pictures/photo8.jpg" alt=""><p>Ещё больше твоих прекрасных улыбочек!</p></div>
@@ -221,7 +222,7 @@ showLine();
   <div class="photo-container"><img src="pictures/photo11.jpg" alt=""><p>Объяснять не буду.</p></div>
   <div class="photo-container"><img src="pictures/photo12.jpg" alt=""><p>Соглашусь на что угодно ради твоей улыбки и хорошего настроения)</p></div>
   <div class="photo-container"><img src="pictures/photo13.jpg" alt=""><p>Милашкrrrrr</p></div>
-  <div class="photo-container"><img src="pictures/photo19.jpg" alt=""><p>жепкажепкажепка</p></div>
+  <div class="photo-container"><img src="pictures/photo19.jpg" alt=""><p>Жепкажепкажепка</p></div>
   <div class="photo-container"><img src="pictures/photo14.jpg" alt=""><p>&lt;3</p></div>
   <div class="photo-container"><img src="pictures/photo20.jpg" alt=""><p>Сделаем ещё больше фоток и воспоминаний? Скучаю, жду тебя💝</p></div>
 </div>
@@ -258,13 +259,13 @@ musicBtn.addEventListener('click', () => {
     musicBtn.textContent = "Выключить музыку, но не рекомендую 🔇";
   } else {
     music.pause();
-    musicBtn.textContent = "тык сюда чтобы включить музыку 🎵";
+    musicBtn.textContent = "и чо выключила? 🎵";
   }
 });
 
 // Кнопка "Да"
 yesBtn.onclick = function() {
-  alert('Я невероятно рад услышать это! Напиши мне "подарочек сюда" в чат со мной 💖');
+  alert('Я невероятно рад услышать это!) Напиши мне "подарочек сюда" в чат со мной 💜');
 }
 
 // Кнопка "Нет" убегающая
@@ -312,6 +313,7 @@ setInterval(createFalling, 300);
 
 </body>
 </html>
+
 
 
 
