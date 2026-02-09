@@ -237,6 +237,12 @@ musicBtn.onclick = () => {
 const noBtn = document.getElementById('noBtn');
 const giftBox = document.getElementById('giftBox');
 const questionText = document.getElementById('questionText');
+  
+const yesBtn = document.getElementById('yesBtn');
+yesBtn.onclick = () => {
+  alert("Я очень рад! Напиши мне <Подарочек сюда> в чат со мной🥹💜");
+};
+
 
 function moveNoBtn() {
   const box = giftBox.getBoundingClientRect();
@@ -267,3 +273,4 @@ setInterval(() => {
 
 </body>
 </html>
+
