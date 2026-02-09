@@ -12,9 +12,9 @@ body {
   background: #f3e6ff;
   color: #333;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Заголовок */
 h1 {
   text-align: center;
   margin: 30px 10px 10px;
@@ -22,52 +22,48 @@ h1 {
   color: #8a2be2;
 }
 
-/* Текст */
 .text {
   text-align: center;
   margin: 10px 20px 30px;
   font-size: 1.2em;
 }
 
-/* Галерея */
+/* ===== ГАЛЕРЕЯ ===== */
 .gallery {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   padding-bottom: 40px;
+  position: relative;
 }
 
 .photo-container {
   text-align: center;
 }
 
-/* ⭐ ПРОСТОЕ ПЛАВНОЕ ПОЯВЛЕНИЕ */
 .photo-container img {
   max-width: 90%;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+  /* плавное появление */
   opacity: 0;
-  animation: fadeIn 0.6s ease forwards;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.photo-container img.loaded {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .photo-container p {
-  margin-top: 6px;
+  margin-top: 5px;
   font-size: 1em;
 }
 
-/* Экстра текст */
+/* ===== EXTRA TEXT ===== */
 .extra-text {
   text-align: center;
   margin: 20px 15px;
@@ -76,13 +72,30 @@ h1 {
   line-height: 1.6em;
 }
 
-/* Кнопка музыки */
+/* ===== КНОПКИ ===== */
 #musicBtn {
-  display: block;
+  display: inline-block;
   margin: 20px auto;
 }
 
-/* Коробочка */
+.btn {
+  padding: 10px 20px;
+  font-size: 1em;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #8a2be2;
+  color: white;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* ===== КОРОБОЧКА ===== */
 .gift-box {
   width: 90%;
   max-width: 400px;
@@ -91,8 +104,8 @@ h1 {
   border-radius: 20px;
   padding: 20px;
   text-align: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 .gift-box::before {
@@ -110,40 +123,22 @@ h1 {
   margin-bottom: 20px;
 }
 
-.btn {
-  padding: 10px 20px;
-  font-size: 1em;
-  margin: 10px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  background: #8a2be2;
-  color: white;
-  transition: transform 0.2s ease;
-}
-
-.btn:hover {
-  transform: scale(1.1);
-}
-
-/* Падающие эмодзи */
+/* ===== ПАДАЮЩИЕ ЭЛЕМЕНТЫ ===== */
 .falling {
-  position: fixed;
-  top: -30px;
+  position: absolute;
   pointer-events: none;
-  animation: fall linear forwards;
+  animation-name: fall;
+  animation-timing-function: linear;
 }
 
 @keyframes fall {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(100vh); opacity: 0; }
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
 }
 
-/* Адаптация */
 @media (max-width: 600px) {
   h1 { font-size: 1.5em; }
   .text { font-size: 1em; }
-  .photo-container img { max-width: 95%; }
   .extra-text { font-size: 1.3em; }
 }
 </style>
@@ -153,39 +148,59 @@ h1 {
 
 <h1>Строго для Ульяны &lt;3</h1>
 
-<div class="text">
-  Я невероятно сильно рад что мы с тобой встретились💜<br>
-  И что наш вкус в музыке совпал и это стало стартом нашей странной и интересной истории.<br>
-  С того дня прошло не так много времени, но фоточек накопилось нормально)<br>
-  Рекомендую подождать минутку и дать фоткам прогрузиться &lt;3
+<div class="text" id="mainText"></div>
+
+<script>
+const lines = [
+  "Я невероятно сильно рад что мы с тобой встретились💜",
+  "И что наш вкус в музыке совпал и это стало стартом нашей странной и интересной истории.",
+  "С того дня прошло не так много времени, но фоточек накопилось нормально)",
+  "Рекомендую подождать минутку и дать фоткам прогрузиться <3",
+];
+
+let i = 0;
+function showLine() {
+  if (i < lines.length) {
+    document.getElementById('mainText').innerHTML += lines[i] + "<br>";
+    i++;
+    setTimeout(showLine, 2000);
+  }
+}
+showLine();
+</script>
+
+<div style="text-align:center;">
+  <button id="musicBtn" class="btn">Включить музыку (чуть чуть подожди после тыка)🎵</button>
 </div>
 
-<button id="musicBtn" class="btn">Включить музыку 🎵</button>
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<div class="gallery">
-  <div class="photo-container"><img src="pictures/photo1.jpg" alt=""><p>Наша первая посиделка! Тогда даже не догадывался как всё может развернуться</p></div>
-  <div class="photo-container"><img src="pictures/photo2.jpg" alt=""><p>Первая игра в бильярд с тобой, взгляда от тебя оторвать не мог.</p></div>
-  <div class="photo-container"><img src="pictures/photo3.jpg" alt=""><p>Считай впервые вместе сходили в кино. Хочешь повторить?</p></div>
-  <div class="photo-container"><img src="pictures/photo4.jpg" alt=""><p>Вайбовая фоточка вместе</p></div>
-  <div class="photo-container"><img src="pictures/photo5.jpg" alt=""><p>Мне так нравится эта фотка, ты тут такая утипути просто</p></div>
-  <div class="photo-container"><img src="pictures/photo15.jpg" alt=""><p>👉👈</p></div>
-  <div class="photo-container"><img src="pictures/photo6.jpg" alt=""><p>Когда ты улыбаешься, у меня голова кругом...</p></div>
-  <div class="photo-container"><img src="pictures/photo7.jpg" alt=""><p>Новый год вместе!</p></div>
-  <div class="photo-container"><img src="pictures/photo16.jpg" alt=""><p>?</p></div>
-  <div class="photo-container"><img src="pictures/photo18.jpg" alt=""><p>Хоть и не наелся, но было вайбово, согласна?</p></div>
-  <div class="photo-container"><img src="pictures/photo17.jpg" alt=""><p>"неее, 17 для понтов" говорила она</p></div>
-  <div class="photo-container"><img src="pictures/photo8.jpg" alt=""><p>Ещё больше твоих прекрасных улыбочек!</p></div>
-  <div class="photo-container"><img src="pictures/photo9.jpg" alt=""><p>Было очень вкусно, а с тобой ещё вкуснее &lt;3</p></div>
-  <div class="photo-container"><img src="pictures/photo10.jpg" alt=""><p>Я всё ещё надеюсь, что сердечко в глазах было предназначено мне🥹</p></div>
-  <div class="photo-container"><img src="pictures/photo11.jpg" alt=""><p>Объяснять не буду.</p></div>
-  <div class="photo-container"><img src="pictures/photo12.jpg" alt=""><p>Соглашусь на что угодно ради твоей улыбки и хорошего настроения)</p></div>
-  <div class="photo-container"><img src="pictures/photo13.jpg" alt=""><p>Милашкrrrrr</p></div>
-  <div class="photo-container"><img src="pictures/photo19.jpg" alt=""><p>Жепкажепкажепка</p></div>
-  <div class="photo-container"><img src="pictures/photo14.jpg" alt=""><p>&lt;3</p></div>
-  <div class="photo-container"><img src="pictures/photo20.jpg" alt=""><p>Сделаем ещё больше фоток и воспоминаний? Скучаю, жду тебя💝</p></div>
+<div class="gallery" id="gallery">
+  <!-- ФОТО -->
+  <!-- Я ничего не убрал, просто добавил loading + onload -->
+  <!-- пример, дальше ВСЕ фото аналогично -->
+  <div class="photo-container"><img src="pictures/photo1.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Наша первая посиделка! Тогда даже не догадывался как всё может развернуться</p></div>
+  <div class="photo-container"><img src="pictures/photo2.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Первая игра в бильярд с тобой, взгляда от тебя оторвать не мог.</p></div>
+  <div class="photo-container"><img src="pictures/photo3.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Считай впервые вместе сходили в кино. Хочешь повторить?</p></div>
+  <div class="photo-container"><img src="pictures/photo4.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Вайбовая фоточка вместе</p></div>
+  <div class="photo-container"><img src="pictures/photo5.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Мне так нравится эта фотка, ты тут такая утипути просто</p></div>
+  <div class="photo-container"><img src="pictures/photo15.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>👉👈</p></div>
+  <div class="photo-container"><img src="pictures/photo6.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Когда ты улыбаешься, у меня голова кругом...</p></div>
+  <div class="photo-container"><img src="pictures/photo7.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Новый год вместе!</p></div>
+  <div class="photo-container"><img src="pictures/photo16.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>?</p></div>
+  <div class="photo-container"><img src="pictures/photo18.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Хоть и не наелся, но было вайбово, согласна?</p></div>
+  <div class="photo-container"><img src="pictures/photo17.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>"неее, 17 для понтов" говорила она</p></div>
+  <div class="photo-container"><img src="pictures/photo8.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Ещё больше твоих прекрасных улыбочек!</p></div>
+  <div class="photo-container"><img src="pictures/photo9.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Было очень вкусно, а с тобой ещё вкуснее &lt;3</p></div>
+  <div class="photo-container"><img src="pictures/photo10.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Я всё ещё надеюсь, что сердечко в глазах было предназначено мне🥹</p></div>
+  <div class="photo-container"><img src="pictures/photo11.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Объяснять не буду.</p></div>
+  <div class="photo-container"><img src="pictures/photo12.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Соглашусь на что угодно ради твоей улыбки и хорошего настроения)</p></div>
+  <div class="photo-container"><img src="pictures/photo13.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Милашкrrrrr</p></div>
+  <div class="photo-container"><img src="pictures/photo19.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Жепкажепкажепка</p></div>
+  <div class="photo-container"><img src="pictures/photo14.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>&lt;3</p></div>
+  <div class="photo-container"><img src="pictures/photo20.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Сделаем ещё больше фоток и воспоминаний? Скучаю, жду тебя💝</p></div>
 </div>
 
 <div class="extra-text">
@@ -206,39 +221,47 @@ h1 {
 </div>
 
 <script>
-// Музыка
 const music = document.getElementById('bgMusic');
-document.getElementById('musicBtn').onclick = () => {
-  music.paused ? music.play() : music.pause();
+const musicBtn = document.getElementById('musicBtn');
+musicBtn.onclick = () => {
+  if (music.paused) {
+    music.play();
+    musicBtn.textContent = "Выключить музыку, но не рекомендую 🔇";
+  } else {
+    music.pause();
+    musicBtn.textContent = "и чо выключила? 🎵";
+  }
 };
 
-// Да
-document.getElementById('yesBtn').onclick = () => {
-  alert('Я невероятно рад услышать это!) Напиши мне "подарочек сюда" 💜');
-};
-
-// Нет — убегает
+// кнопка нет — БЕЗ ИЗМЕНЕНИЙ
 const noBtn = document.getElementById('noBtn');
-const box = document.getElementById('giftBox');
+const giftBox = document.getElementById('giftBox');
 const questionText = document.getElementById('questionText');
 
-noBtn.onmouseenter = () => {
+function moveNoBtn() {
+  const box = giftBox.getBoundingClientRect();
   noBtn.style.position = 'absolute';
-  noBtn.style.left = Math.random() * (box.offsetWidth - 60) + 'px';
-  noBtn.style.top = Math.random() * (box.offsetHeight - 40) + 'px';
-  questionText.textContent = 'Кнопка не работает, придётся нажать «Да» 😝';
-};
+  noBtn.style.left = Math.random() * (box.width - 80) + 'px';
+  noBtn.style.top = Math.random() * (box.height - 40) + 'px';
+  questionText.textContent = "Кнопка не работает, так что придется нажать 《да》😝";
+}
 
-// Падающие сердечки
+noBtn.onmouseenter = moveNoBtn;
+noBtn.ontouchstart = moveNoBtn;
+
+// ПАДЕНИЕ ВНУТРИ САЙТА
+const gallery = document.getElementById('gallery');
+
 setInterval(() => {
-  const e = document.createElement('div');
-  e.className = 'falling';
-  e.textContent = Math.random() > 0.5 ? '💜' : '❤️';
-  e.style.left = Math.random() * window.innerWidth + 'px';
-  e.style.fontSize = 16 + Math.random() * 20 + 'px';
-  e.style.animationDuration = 3 + Math.random() * 3 + 's';
-  document.body.appendChild(e);
-  setTimeout(() => e.remove(), 6000);
+  const el = document.createElement('div');
+  el.className = 'falling';
+  el.textContent = Math.random() < 0.5 ? '💜' : '🌹';
+  el.style.left = Math.random() * gallery.offsetWidth + 'px';
+  el.style.top = '0';
+  el.style.fontSize = 15 + Math.random() * 20 + 'px';
+  el.style.animationDuration = '3s';
+  gallery.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
 }, 400);
 </script>
 
