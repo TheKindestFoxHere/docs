@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Валентинка для Ульяночки 💜</title>
+
 <style>
 body {
   margin: 0;
@@ -11,9 +12,9 @@ body {
   background: #f3e6ff;
   color: #333;
   overflow-x: hidden;
-  position: relative;
 }
 
+/* Заголовок */
 h1 {
   text-align: center;
   margin: 30px 10px 10px;
@@ -21,6 +22,7 @@ h1 {
   color: #8a2be2;
 }
 
+/* Вводный текст */
 .text {
   text-align: center;
   margin: 10px 20px 30px;
@@ -40,16 +42,24 @@ h1 {
   text-align: center;
 }
 
+/* ⭐ ПЛАВНОЕ ПОЯВЛЕНИЕ */
 .photo-container img {
   max-width: 90%;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  opacity: 0; /* изначально скрыта */
-  transition: opacity 1s ease-in-out; /* плавное появление */
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
 }
 
-.photo-container img.loaded {
-  opacity: 1; /* когда загружена — плавно показываем */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .photo-container p {
@@ -57,22 +67,13 @@ h1 {
   font-size: 1em;
 }
 
-/* Extra текст */
-.extra-text {
-  text-align: center;
-  margin: 20px 15px;
-  font-size: 1.5em;
-  color: #8a2be2;
-  line-height: 1.6em;
-}
-
 /* Кнопка музыки */
 #musicBtn {
-  display: inline-block;
+  display: block;
   margin: 20px auto;
 }
 
-/* Коробочка с бантиком */
+/* Коробочка */
 .gift-box {
   width: 90%;
   max-width: 400px;
@@ -81,8 +82,8 @@ h1 {
   border-radius: 20px;
   padding: 20px;
   text-align: center;
-  position: relative;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  position: relative;
 }
 
 .gift-box::before {
@@ -109,57 +110,46 @@ h1 {
   cursor: pointer;
   background: #8a2be2;
   color: white;
-  transition: all 0.3s ease;
-  position: relative;
+  transition: transform 0.2s ease;
 }
 
 .btn:hover {
   transform: scale(1.1);
 }
 
-/* Элементы падения */
+/* Падающие эмодзи */
 .falling {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: -50px;
-  z-index: 9999;
+  position: fixed;
+  top: -30px;
   pointer-events: none;
-  animation-name: fall;
-  animation-timing-function: linear;
+  animation: fall linear forwards;
 }
 
 @keyframes fall {
-  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(360deg) scale(0.8); opacity: 0; }
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(100vh); opacity: 0; }
 }
 
+/* Адаптация */
 @media (max-width: 600px) {
   h1 { font-size: 1.5em; }
   .text { font-size: 1em; }
-  .btn { font-size: 0.9em; padding: 8px 16px; }
   .photo-container img { max-width: 95%; }
-  .question { font-size: 1.1em; }
-  .gift-box { padding: 15px; }
-  .extra-text { font-size: 1.3em; }
 }
 </style>
 </head>
+
 <body>
 
 <h1>Строго для Ульяны &lt;3</h1>
 
-<div class="text" id="mainText">
-  Я невероятно сильно рад что мы с тобой встретились💜<br>
-  И что наш вкус в музыке совпал и это стало стартом нашей странной и интересной истории.<br>
-  С того дня прошло не так много времени, но фоточек накопилось нормально)<br>
-  Рекомендую подождать минутку и дать фоткам прогрузиться <3<br>
+<div class="text">
+  Я невероятно рад, что мы встретились 💜<br>
+  И что музыка стала началом нашей истории.<br>
+  Немного фоточек и воспоминаний ниже ↓
 </div>
 
-<!-- Кнопка музыки перед галереей -->
-<div style="text-align:center;">
-  <button id="musicBtn" class="btn">Включить музыку 🎵</button>
-</div>
+<button id="musicBtn" class="btn">Включить музыку 🎵</button>
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -187,15 +177,8 @@ h1 {
   <div class="photo-container"><img src="pictures/photo20.jpg" alt=""><p>Сделаем ещё больше фоток и воспоминаний? Скучаю, жду тебя💝</p></div>
 </div>
 
-<div class="extra-text">
-  <p>Да, я помню что такие текста тебя не трогают, но хочу чтобы ты прочитала)</p>
-  <p>Ты ну просто афигеть какая интересная девушка, с которой можно обсудить любую тему</p>
-  <p>Ты так преуспела во многих отраслях жизни, несмотря что тебе 19 лет</p>
-  <p>Я люблю тебя 💜</p>
-</div>
-
 <div class="gift-box" id="giftBox">
-  <div class="question" id="questionText">Ты будешь моей валентинкой в этот прекрасный день?</div>
+  <div class="question" id="questionText">Ты будешь моей валентинкой?</div>
   <button class="btn" id="yesBtn">Да</button>
   <button class="btn" id="noBtn">Нет</button>
 </div>
@@ -203,69 +186,36 @@ h1 {
 <script>
 // Музыка
 const music = document.getElementById('bgMusic');
-const musicBtn = document.getElementById('musicBtn');
-musicBtn.addEventListener('click', () => {
-  if (music.paused) {
-    music.play();
-    musicBtn.textContent = "Выключить музыку 🔇";
-  } else {
-    music.pause();
-    musicBtn.textContent = "Включить музыку 🎵";
-  }
-});
+document.getElementById('musicBtn').onclick = () => {
+  music.paused ? music.play() : music.pause();
+};
 
-// Кнопка "Да"
-document.getElementById('yesBtn').onclick = function() {
-  alert('Я невероятно рад услышать это!) 💜');
-}
+// Да
+document.getElementById('yesBtn').onclick = () => {
+  alert('Я очень счастлив 💜');
+};
 
-// Кнопка "Нет" убегающая
+// Нет (убегает)
 const noBtn = document.getElementById('noBtn');
-const giftBox = document.getElementById('giftBox');
-const questionText = document.getElementById('questionText');
-
-function moveNoBtn() {
-  const boxRect = giftBox.getBoundingClientRect();
-  const btnWidth = noBtn.offsetWidth;
-  const btnHeight = noBtn.offsetHeight;
-  const x = Math.random() * (boxRect.width - btnWidth);
-  const y = Math.random() * (boxRect.height - btnHeight - 40) + 40;
+const box = document.getElementById('giftBox');
+noBtn.onmouseenter = () => {
   noBtn.style.position = 'absolute';
-  noBtn.style.left = x + 'px';
-  noBtn.style.top = y + 'px';
-  questionText.textContent = "Кнопка не работает, так что придется нажать «Да» 😝";
-}
+  noBtn.style.left = Math.random() * (box.offsetWidth - 60) + 'px';
+  noBtn.style.top = Math.random() * (box.offsetHeight - 40) + 'px';
+  document.getElementById('questionText').textContent = 'Отказаться нельзя 😝';
+};
 
-noBtn.addEventListener('mouseenter', moveNoBtn);
-noBtn.addEventListener('touchstart', moveNoBtn);
-
-// Падающие элементы: сердечки, розы, звёзды
-function createFalling() {
-  const elem = document.createElement('div');
-  const r = Math.random();
-  if (r < 0.5) {
-    elem.textContent = "❤️";
-    elem.style.fontSize = 15 + Math.random()*20 + "px";
-  } else if (r < 0.75) {
-    elem.textContent = "💜";
-    elem.style.fontSize = 15 + Math.random()*20 + "px";
-  } else {
-    elem.textContent = "🌹";
-    elem.style.fontSize = 15 + Math.random()*20 + "px";
-  }
-  elem.className = 'falling';
-  elem.style.left = Math.random() * window.innerWidth + 'px';
-  elem.style.animationDuration = 3 + Math.random()*3 + 's';
-  document.body.appendChild(elem);
-  setTimeout(() => elem.remove(), 6000);
-}
-setInterval(createFalling, 300);
-
-// Плавное появление фотографий
-document.querySelectorAll('.photo-container img').forEach(img => {
-  img.addEventListener('load', () => { img.classList.add('loaded'); });
-  if (img.complete) { img.classList.add('loaded'); }
-});
+// Падающие сердечки
+setInterval(() => {
+  const e = document.createElement('div');
+  e.className = 'falling';
+  e.textContent = Math.random() > 0.5 ? '💜' : '❤️';
+  e.style.left = Math.random() * window.innerWidth + 'px';
+  e.style.fontSize = 16 + Math.random() * 20 + 'px';
+  e.style.animationDuration = 3 + Math.random() * 3 + 's';
+  document.body.appendChild(e);
+  setTimeout(() => e.remove(), 6000);
+}, 400);
 </script>
 
 </body>
