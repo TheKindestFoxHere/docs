@@ -292,7 +292,7 @@ setInterval(() => {
 
   el.style.setProperty('--fall-distance', pageHeight + 'px');
 
-  const sway = 20 + Math.random() * 30; // сила покачивания
+  const sway = 20 + Math.random() * 15; // сила покачивания
   el.style.setProperty('--sway', (Math.random() < 0.5 ? -1 : 1) * sway + 'px');
 
   document.body.appendChild(el);
@@ -304,6 +304,7 @@ setInterval(() => {
 
 </body>
 </html>
+
 
 
 
