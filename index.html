@@ -132,15 +132,25 @@ h1 {
 }
 
 @keyframes fall {
-  from {
-    transform: translateY(0);
+  0% {
+    transform: translate(0, 0) rotate(0deg);
     opacity: 1;
   }
-  to {
-    transform: translateY(var(--fall-distance));
+  25% {
+    transform: translate(var(--sway), 25%) rotate(5deg);
+  }
+  50% {
+    transform: translate(calc(var(--sway) * -1), 50%) rotate(-5deg);
+  }
+  75% {
+    transform: translate(var(--sway), 75%) rotate(5deg);
+  }
+  100% {
+    transform: translate(0, var(--fall-distance)) rotate(0deg);
     opacity: 0;
   }
 }
+
   
 @media (max-width: 600px) {
   h1 { font-size: 1.5em; }
@@ -275,6 +285,9 @@ setInterval(() => {
   el.style.fontSize = 15 + Math.random() * 20 + 'px';
   el.style.animationDuration = duration + 's';
   el.style.setProperty('--fall-distance', pageHeight + 'px');
+  const sway = 20 + Math.random() * 30; // сила покачивания
+el.style.setProperty('--sway', (Math.random() < 0.5 ? -1 : 1) * sway + 'px');
+
 
   document.body.appendChild(el);
   setTimeout(() => el.remove(), duration * 1000 + 1000);
@@ -284,6 +297,7 @@ setInterval(() => {
 
 </body>
 </html>
+
 
 
 
