@@ -127,31 +127,32 @@ h1 {
   top: -40px;
   pointer-events: none;
   z-index: 9999;
-  animation-name: fall;
-  animation-timing-function: linear;
+
+  /* две анимации: падение вниз и покачивание */
+  animation:
+    fallY linear,
+    swayX ease-in-out infinite;
 }
 
-@keyframes fall {
-  0% {
-    transform: translateX(0) translateY(0) rotate(0deg);
+/* падение вниз */
+@keyframes fallY {
+  from {
+    transform: translateY(0);
     opacity: 1;
   }
-  20% {
-    transform: translateX(var(--sway)) translateY(calc(var(--fall-distance) * 0.2)) rotate(5deg);
-  }
-  40% {
-    transform: translateX(calc(var(--sway) * -1)) translateY(calc(var(--fall-distance) * 0.4)) rotate(-5deg);
-  }
-  60% {
-    transform: translateX(var(--sway)) translateY(calc(var(--fall-distance) * 0.6)) rotate(5deg);
-  }
-  80% {
-    transform: translateX(calc(var(--sway) * -1)) translateY(calc(var(--fall-distance) * 0.8)) rotate(-5deg);
-  }
-  100% {
-    transform: translateX(0) translateY(var(--fall-distance)) rotate(0deg);
+  to {
+    transform: translateY(var(--fall-distance));
     opacity: 0;
   }
+}
+
+/* покачивание влево-вправо */
+@keyframes swayX {
+  0%   { margin-left: 0; }
+  25%  { margin-left: var(--sway); }
+  50%  { margin-left: 0; }
+  75%  { margin-left: calc(var(--sway) * -1); }
+  100% { margin-left: 0; }
 }
 
 @media (max-width: 600px) {
@@ -279,27 +280,31 @@ setInterval(() => {
   el.textContent = Math.random() < 0.5 ? '💜' : '🌹';
 
   const pageHeight = document.body.scrollHeight;
-  const speed = 70; // 🔥 МЕНЯЙ ТУТ СКОРОСТЬ (px/сек)
+  const speed = 100; // скорость падения (px/сек), можно менять
 
   const duration = pageHeight / speed;
 
   el.style.left = Math.random() * window.innerWidth + 'px';
   el.style.fontSize = 15 + Math.random() * 20 + 'px';
-  el.style.animationDuration = duration + 's';
-  el.style.setProperty('--fall-distance', pageHeight + 'px');
-  
-  const sway = 20 + Math.random() * 30; // сила покачивания
-el.style.setProperty('--sway', (Math.random() < 0.5 ? -1 : 1) * sway + 'px');
 
+  // длительность для двух анимаций: падение и качание
+  el.style.animationDuration = duration + 's, ' + (2 + Math.random() * 2) + 's';
+
+  el.style.setProperty('--fall-distance', pageHeight + 'px');
+
+  const sway = 20 + Math.random() * 30; // сила покачивания
+  el.style.setProperty('--sway', (Math.random() < 0.5 ? -1 : 1) * sway + 'px');
 
   document.body.appendChild(el);
   setTimeout(() => el.remove(), duration * 1000 + 1000);
-}, 800);
+}, 500);
+
 
 </script>
 
 </body>
 </html>
+
 
 
 
