@@ -146,15 +146,6 @@ h1 {
   }
 }
 
-/* покачивание влево-вправо */
-@keyframes swayX {
-  0%   { margin-left: 0; }
-  25%  { margin-left: var(--sway); }
-  50%  { margin-left: 0; }
-  75%  { margin-left: calc(var(--sway) * -1); }
-  100% { margin-left: 0; }
-}
-
 @media (max-width: 600px) {
   h1 { font-size: 1.5em; }
   .text { font-size: 1em; }
@@ -285,17 +276,13 @@ setInterval(() => {
   const duration = pageHeight / speed;
 
   el.style.left = Math.random() * window.innerWidth + 'px';
-  el.style.fontSize = 15 + Math.random() * 20 + 'px';
+  el.style.fontSize = 8 + Math.random() * 20 + 'px';
 
   // длительность для двух анимаций: падение и качание
   el.style.animationDuration = duration + 's, ' + (2 + Math.random() * 2) + 's';
 
   el.style.setProperty('--fall-distance', pageHeight + 'px');
-
-  const sway = 20 + Math.random() * 15; // сила покачивания
-  el.style.setProperty('--sway', (Math.random() < 0.5 ? -1 : 1) * sway + 'px');
-
-  document.body.appendChild(el);
+  
   setTimeout(() => el.remove(), duration * 1000 + 1000);
 }, 500);
 
@@ -304,6 +291,7 @@ setInterval(() => {
 
 </body>
 </html>
+
 
 
 
