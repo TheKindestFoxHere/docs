@@ -127,7 +127,8 @@ h1 {
   top: -40px;
   pointer-events: none;
   z-index: 9999;
-  animation: fall linear;
+  animation-name: fall;
+  animation-timing-function: linear;
 }
 
 @keyframes fall {
@@ -266,23 +267,24 @@ setInterval(() => {
   el.textContent = Math.random() < 0.5 ? '💜' : '🌹';
 
   const pageHeight = document.body.scrollHeight;
+  const speed = 70; // 🔥 МЕНЯЙ ТУТ СКОРОСТЬ (px/сек)
+
+  const duration = pageHeight / speed;
 
   el.style.left = Math.random() * window.innerWidth + 'px';
   el.style.fontSize = 15 + Math.random() * 20 + 'px';
-  el.style.animationDuration = 4 + Math.random() * 2 + 's';
-
-  // ВАЖНО: задаём расстояние падения через CSS-переменную
+  el.style.animationDuration = duration + 's';
   el.style.setProperty('--fall-distance', pageHeight + 'px');
 
   document.body.appendChild(el);
-
-  setTimeout(() => el.remove(), 7000);
-}, 600);
+  setTimeout(() => el.remove(), duration * 1000 + 1000);
+}, 200);
 
 </script>
 
 </body>
 </html>
+
 
 
 
