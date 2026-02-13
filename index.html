@@ -46,8 +46,6 @@ h1 {
   max-width: 90%;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-
-  /* плавное появление */
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -125,15 +123,22 @@ h1 {
 
 /* ===== ПАДАЮЩИЕ ЭЛЕМЕНТЫ ===== */
 .falling {
-  position: absolute;
+  position: fixed;
+  top: -40px;
   pointer-events: none;
-  animation-name: fall;
-  animation-timing-function: linear;
+  animation: fall linear;
+  z-index: 9999;
 }
 
 @keyframes fall {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(100%); opacity: 0; }
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(calc(100vh + 40px));
+    opacity: 0;
+  }
 }
 
 @media (max-width: 600px) {
@@ -178,9 +183,6 @@ showLine();
 </audio>
 
 <div class="gallery" id="gallery">
-  <!-- ФОТО -->
-  <!-- Я ничего не убрал, просто добавил loading + onload -->
-  <!-- пример, дальше ВСЕ фото аналогично -->
   <div class="photo-container"><img src="pictures/photo1.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Наша первая посиделка! Тогда даже не догадывался как всё может развернуться</p></div>
   <div class="photo-container"><img src="pictures/photo2.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Первая игра в бильярд с тобой, взгляда от тебя оторвать не мог.</p></div>
   <div class="photo-container"><img src="pictures/photo3.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Считай впервые вместе сходили в кино. Хочешь повторить?</p></div>
@@ -202,10 +204,12 @@ showLine();
   <div class="photo-container"><img src="pictures/photo14.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>&lt;3</p></div>
   <div class="photo-container"><img src="pictures/photo20.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Сделаем ещё больше фоток и воспоминаний? Скучаю, жду тебя💝</p></div>
   <div class="photo-container"><img src="pictures/photo26.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>Ну а пока что будем общаться так ыхыххыхы</p></div>
+  <div class="photo-container"><img src="pictures/photo27.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>пианистка😍</p></div>
+  <div class="photo-container"><img src="pictures/photo28.jpg" loading="lazy" decoding="async" onload="this.classList.add('loaded')"><p>не, ну твоё выражение лица это что-то с чем-то🥹</p></div>
 </div>
 
 <div class="extra-text">
-  <p>Да, я помню что такие текста тебя не трогают, но хочу чтобы ты прочитала)</p>
+  <p>Да, я помню что такие текста тебя не трогают, розовые сопли как никак, но хочу чтобы ты прочитала)</p>
   <p>Я помню как ты спросила "почему ты считаешь меня шикарной?", и вот ответы, почему я думаю именно так.</p>
   <p>Ты ну просто афигеть какая интересная девушка, с которой можно обсудить любую тему, поболтать о серьёзном и о фантастическом.</p>
   <p>Ты так преуспела во многих отраслях жизни, не смотря что тебе 19 лет. Ты стала моей мотивацией идти дальше за своими желаниями, поэтому я тебе безумно благодарен.</p>
@@ -224,6 +228,7 @@ showLine();
 <script>
 const music = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicBtn');
+
 musicBtn.onclick = () => {
   if (music.paused) {
     music.play();
@@ -234,16 +239,14 @@ musicBtn.onclick = () => {
   }
 };
 
-// кнопка нет — БЕЗ ИЗМЕНЕНИЙ
 const noBtn = document.getElementById('noBtn');
 const giftBox = document.getElementById('giftBox');
 const questionText = document.getElementById('questionText');
-  
 const yesBtn = document.getElementById('yesBtn');
+
 yesBtn.onclick = () => {
   alert("Я очень рад! Напиши мне <Подарочек сюда> в чат со мной🥹💜");
 };
-
 
 function moveNoBtn() {
   const box = giftBox.getBoundingClientRect();
@@ -256,19 +259,16 @@ function moveNoBtn() {
 noBtn.onmouseenter = moveNoBtn;
 noBtn.ontouchstart = moveNoBtn;
 
-// ПАДЕНИЕ ВНУТРИ САЙТА
-const gallery = document.getElementById('gallery');
-
+/* ===== ПАДЕНИЕ ПО ВСЕМУ САЙТУ ===== */
 setInterval(() => {
   const el = document.createElement('div');
   el.className = 'falling';
   el.textContent = Math.random() < 0.5 ? '💜' : '🌹';
-  el.style.left = Math.random() * gallery.offsetWidth + 'px';
-  el.style.top = '0';
+  el.style.left = Math.random() * window.innerWidth + 'px';
   el.style.fontSize = 15 + Math.random() * 20 + 'px';
-  el.style.animationDuration = '3s';
-  gallery.appendChild(el);
-  setTimeout(() => el.remove(), 3000);
+  el.style.animationDuration = 3 + Math.random() * 2 + 's';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 5000);
 }, 400);
 </script>
 
