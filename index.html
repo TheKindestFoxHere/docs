@@ -124,9 +124,10 @@ h1 {
 /* ===== ПАДАЮЩИЕ ЭЛЕМЕНТЫ ===== */
 .falling {
   position: absolute;
+  top: -40px;
   pointer-events: none;
+  z-index: 9999;
   animation: fall linear;
-  z-index: 999;
 }
 
 @keyframes fall {
@@ -135,11 +136,11 @@ h1 {
     opacity: 1;
   }
   to {
-    transform: translateY(150px);
+    transform: translateY(var(--fall-distance));
     opacity: 0;
   }
 }
-
+  
 @media (max-width: 600px) {
   h1 { font-size: 1.5em; }
   .text { font-size: 1em; }
@@ -264,16 +265,23 @@ setInterval(() => {
   el.className = 'falling';
   el.textContent = Math.random() < 0.5 ? '💜' : '🌹';
 
+  const pageHeight = document.body.scrollHeight;
+
   el.style.left = Math.random() * window.innerWidth + 'px';
-  el.style.top = Math.random() * document.body.scrollHeight + 'px';
-  el.style.fontSize = 14 + Math.random() * 22 + 'px';
-  el.style.animationDuration = 2 + Math.random() * 2 + 's';
+  el.style.fontSize = 15 + Math.random() * 20 + 'px';
+  el.style.animationDuration = 4 + Math.random() * 2 + 's';
+
+  // ВАЖНО: задаём расстояние падения через CSS-переменную
+  el.style.setProperty('--fall-distance', pageHeight + 'px');
 
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 4000);
-}, 80);
+
+  setTimeout(() => el.remove(), 7000);
+}, 140);
+
 </script>
 
 </body>
 </html>
+
 
