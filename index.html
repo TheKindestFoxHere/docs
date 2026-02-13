@@ -133,25 +133,27 @@ h1 {
 
 @keyframes fall {
   0% {
-    transform: translate(0, 0) rotate(0deg);
+    transform: translateX(0) translateY(0) rotate(0deg);
     opacity: 1;
   }
-  25% {
-    transform: translate(var(--sway), 25%) rotate(5deg);
+  20% {
+    transform: translateX(var(--sway)) translateY(calc(var(--fall-distance) * 0.2)) rotate(5deg);
   }
-  50% {
-    transform: translate(calc(var(--sway) * -1), 50%) rotate(-5deg);
+  40% {
+    transform: translateX(calc(var(--sway) * -1)) translateY(calc(var(--fall-distance) * 0.4)) rotate(-5deg);
   }
-  75% {
-    transform: translate(var(--sway), 75%) rotate(5deg);
+  60% {
+    transform: translateX(var(--sway)) translateY(calc(var(--fall-distance) * 0.6)) rotate(5deg);
+  }
+  80% {
+    transform: translateX(calc(var(--sway) * -1)) translateY(calc(var(--fall-distance) * 0.8)) rotate(-5deg);
   }
   100% {
-    transform: translate(0, var(--fall-distance)) rotate(0deg);
+    transform: translateX(0) translateY(var(--fall-distance)) rotate(0deg);
     opacity: 0;
   }
 }
 
-  
 @media (max-width: 600px) {
   h1 { font-size: 1.5em; }
   .text { font-size: 1em; }
@@ -285,6 +287,7 @@ setInterval(() => {
   el.style.fontSize = 15 + Math.random() * 20 + 'px';
   el.style.animationDuration = duration + 's';
   el.style.setProperty('--fall-distance', pageHeight + 'px');
+  
   const sway = 20 + Math.random() * 30; // сила покачивания
 el.style.setProperty('--sway', (Math.random() < 0.5 ? -1 : 1) * sway + 'px');
 
@@ -297,6 +300,7 @@ el.style.setProperty('--sway', (Math.random() < 0.5 ? -1 : 1) * sway + 'px');
 
 </body>
 </html>
+
 
 
 
