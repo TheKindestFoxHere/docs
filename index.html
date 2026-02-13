@@ -123,16 +123,16 @@ h1 {
 
 /* ===== ПАДАЮЩИЕ ЭЛЕМЕНТЫ ===== */
 .falling {
-  position: absolute;
+  position: fixed;
   top: -40px;
   pointer-events: none;
   z-index: 9999;
 
-  /* две анимации: падение вниз и покачивание */
-  animation:
-    fallY linear,
-    swayX ease-in-out infinite;
+  animation-name: fallY;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
+
 
 /* падение вниз */
 @keyframes fallY {
@@ -270,16 +270,15 @@ setInterval(() => {
   el.className = 'falling';
   el.textContent = Math.random() < 0.5 ? '💜' : '🌹';
 
-  const pageHeight = document.body.scrollHeight;
+  const pageHeight = document.documentElement.scrollHeight;
   const speed = 100; // скорость падения (px/сек), можно менять
 
   const duration = pageHeight / speed;
 
   el.style.left = Math.random() * window.innerWidth + 'px';
   el.style.fontSize = 8 + Math.random() * 20 + 'px';
+  el.style.animationDuration = duration + 's';
 
-  // длительность для двух анимаций: падение и качание
-  el.style.animationDuration = duration + 's, ' + (2 + Math.random() * 2) + 's';
 
   el.style.setProperty('--fall-distance', pageHeight + 'px');
   
@@ -291,6 +290,7 @@ setInterval(() => {
 
 </body>
 </html>
+
 
 
 
