@@ -123,11 +123,10 @@ h1 {
 
 /* ===== ПАДАЮЩИЕ ЭЛЕМЕНТЫ ===== */
 .falling {
-  position: fixed;
-  top: -40px;
+  position: absolute;
   pointer-events: none;
   animation: fall linear;
-  z-index: 9999;
+  z-index: 999;
 }
 
 @keyframes fall {
@@ -136,7 +135,7 @@ h1 {
     opacity: 1;
   }
   to {
-    transform: translateY(calc(100vh + 40px));
+    transform: translateY(150px);
     opacity: 0;
   }
 }
@@ -259,17 +258,20 @@ function moveNoBtn() {
 noBtn.onmouseenter = moveNoBtn;
 noBtn.ontouchstart = moveNoBtn;
 
-/* ===== ПАДЕНИЕ ПО ВСЕМУ САЙТУ ===== */
+/* ===== СМАЙЛИКИ ПО ВСЕМУ САЙТУ ===== */
 setInterval(() => {
   const el = document.createElement('div');
   el.className = 'falling';
   el.textContent = Math.random() < 0.5 ? '💜' : '🌹';
+
   el.style.left = Math.random() * window.innerWidth + 'px';
-  el.style.fontSize = 15 + Math.random() * 20 + 'px';
-  el.style.animationDuration = 3 + Math.random() * 2 + 's';
+  el.style.top = Math.random() * document.body.scrollHeight + 'px';
+  el.style.fontSize = 14 + Math.random() * 22 + 'px';
+  el.style.animationDuration = 2 + Math.random() * 2 + 's';
+
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 5000);
-}, 400);
+  setTimeout(() => el.remove(), 4000);
+}, 350);
 </script>
 
 </body>
