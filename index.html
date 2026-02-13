@@ -123,28 +123,24 @@ h1 {
 
 /* ===== ПАДАЮЩИЕ ЭЛЕМЕНТЫ ===== */
 .falling {
-  position: fixed;
-  top: -40px;
+  position: absolute;
+  top: -50px;
   pointer-events: none;
   z-index: 9999;
-
-  animation-name: fallY;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
+  animation: fall linear forwards;
 }
 
-
-/* падение вниз */
-@keyframes fallY {
+@keyframes fall {
   from {
-    transform: translateY(0);
+    top: -50px;
     opacity: 1;
   }
   to {
-    transform: translateY(var(--fall-distance));
+    top: 100%;
     opacity: 0;
   }
 }
+
 
 @media (max-width: 600px) {
   h1 { font-size: 1.5em; }
@@ -270,26 +266,23 @@ setInterval(() => {
   el.className = 'falling';
   el.textContent = Math.random() < 0.5 ? '💜' : '🌹';
 
-  const pageHeight = document.documentElement.scrollHeight;
-  const speed = 100; // скорость падения (px/сек), можно менять
-
-  const duration = pageHeight / speed;
+  const duration = 6 + Math.random() * 6; // 6–12 секунд
 
   el.style.left = Math.random() * window.innerWidth + 'px';
-  el.style.fontSize = 8 + Math.random() * 20 + 'px';
+  el.style.fontSize = 10 + Math.random() * 20 + 'px';
   el.style.animationDuration = duration + 's';
 
+  document.body.appendChild(el);
 
-  el.style.setProperty('--fall-distance', pageHeight + 'px');
-  
-  setTimeout(() => el.remove(), duration * 1000 + 1000);
-}, 500);
+  setTimeout(() => el.remove(), duration * 1000);
+}, 200);
 
 
 </script>
 
 </body>
 </html>
+
 
 
 
